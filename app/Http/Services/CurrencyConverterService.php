@@ -4,7 +4,7 @@ namespace App\Http\Services;
 
 class CurrencyConverterService
 {
-    public function roundAmount(float $amount)
+    public function roundAmount(string $amount)
     {
         $decimalPlaces = $this->findDecimalPlaces($amount);
         $multiplier = pow(10, $decimalPlaces);
@@ -12,10 +12,10 @@ class CurrencyConverterService
     }
 
     /**
-     * @param float $amount
-     * @return float
+     * @param string $amount
+     * @return string
      */
-    public function findDecimalPlaces(float $amount): float
+    public function findDecimalPlaces(string $amount): string
     {
         $parts = explode(".", $amount);
         $decimalPart = isset($parts[1]) ? $parts[1] : "";

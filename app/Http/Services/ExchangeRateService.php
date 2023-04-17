@@ -10,7 +10,7 @@ class ExchangeRateService
     const EXCHANGE_URL = 'https://developers.paysera.com/tasks/api/currency-exchange-rates';
     const BASE_CURRENCY = 'EUR';
 
-    public function fetchCurrencyRates()
+    public function fetchCurrencyRates(): array
     {
         try {
             $exchangeRates = [];
@@ -27,7 +27,7 @@ class ExchangeRateService
     }
     
 
-    public function convertToBaseCurrencyAmount(string $currency, float $amount): float
+    public function convertToBaseCurrencyAmount(string $currency, string $amount): string
     {
         $exchangeRates = Cache::get('exchangeRates');
         if ($currency != self::BASE_CURRENCY) {

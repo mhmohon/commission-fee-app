@@ -14,12 +14,12 @@ class ParseCsvFile
         $values = [];
         foreach ($file as $row) {
             $values[] = [
-                'date' => $row[0],
-                'id' => $row[1],
-                'type' => $row[2],
-                'action' => $row[3],
-                'amount' => $row[4],
-                'currency' => $row[5],
+                'date' => $row[0] ?? '',
+                'id' => $row[1] ?? '',
+                'type' => $row[2] ?? '',
+                'action' => $row[3] ?? '',
+                'amount' => $row[4] ?? '',
+                'currency' => $row[5] ?? '',
             ];
         }
 

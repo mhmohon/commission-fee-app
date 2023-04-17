@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Services;
-use Akaunting\Money\Currency;
 use App\Actions\ParseCsvFile;
 use App\Http\Factory\FeeOperationFactory;
 use Illuminate\Support\Facades\Cache;
@@ -16,25 +15,26 @@ class FeeCalculationService
     
     /**
      * @param string $filePath
-     * @return void
+     * @return array
      */
-    public function feeCalculate(string $filePath): void
+    public function feeCalculate(string $filePath): array
     {
+        $calculationFee = [];
         $csvValues = $this->parseCsvFile->handle($filePath);
         $exchangeRates = $this->exchangeRateService->fetchCurrencyRates();
         Cache::put('exchangeRates', $exchangeRates);
-    
         foreach ($csvValues as $value) {
-            echo $this->calculation($value);
+            $calculationFee[] = $this->calculation($value);
         }
         $this->flushCookiesValues();
+        return $calculationFee;
     }
     
     /**
      * @param array $fileElement
-     * @return void
+     * @return string
      */
-    public function calculation(array $fileElement): void
+    public function calculation(array $fileElement): string
     {
         list($date, $userId, $userType, $operationType, $amount, $currency) = array_values($fileElement);
 
@@ -44,10 +44,7 @@ class FeeCalculationService
         // Round the commission fee to 2 decimal places and add it to the total
         $commissionFee = $this->converter->roundAmount($commissionFee);
         
-        // Print the transaction and commission fee
-        // echo "$date | $userId | $userType | $operationType | $amount | $currency | $commissionFee\n";
-        echo "$commissionFee\n";
-
+        return $commissionFee;
     }
 
     /**

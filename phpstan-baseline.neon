@@ -1,0 +1,91 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$filePath of method App\\\\Console\\\\Commands\\\\FeeCalculate\\:\\:fileValidation\\(\\) expects string\\|null, array\\|bool\\|string given\\.$#"
+			count: 1
+			path: app/Console/Commands/FeeCalculate.php
+
+		-
+			message: "#^Parameter \\#1 \\$filePath of method App\\\\Http\\\\Services\\\\FeeCalculationService\\:\\:feeCalculate\\(\\) expects string, array\\|bool\\|string given\\.$#"
+			count: 1
+			path: app/Console/Commands/FeeCalculate.php
+
+		-
+			message: "#^Parameter \\#1 \\$filename of function file_exists expects string, string\\|null given\\.$#"
+			count: 1
+			path: app/Console/Commands/FeeCalculate.php
+
+		-
+			message: "#^Parameter \\#1 \\$filename of function fopen expects string, string\\|null given\\.$#"
+			count: 1
+			path: app/Console/Commands/FeeCalculate.php
+
+		-
+			message: "#^Property App\\\\Console\\\\Commands\\\\FeeCalculate\\:\\:\\$exchangeRates has no type specified\\.$#"
+			count: 1
+			path: app/Console/Commands/FeeCalculate.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 2
+			path: app/Http/Factory/FeeOperationFactory.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 2
+			path: app/Http/Factory/UserFeeOperationFactory.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Operations\\\\BusinessUserFeeOperation\\:\\:calculateFeeByUser\\(\\) should return string but returns float\\.$#"
+			count: 1
+			path: app/Http/Operations/BusinessUserFeeOperation.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Operations\\\\DepositFeeOperation\\:\\:calculateCommissionFee\\(\\) should return string but returns float\\.$#"
+			count: 1
+			path: app/Http/Operations/DepositFeeOperation.php
+
+		-
+			message: "#^Binary operation \"\\-\" between string and float\\|int\\<0, max\\> results in an error\\.$#"
+			count: 1
+			path: app/Http/Operations/PrivateUserFeeOperation.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:calculateFeeByUser\\(\\) should return string but returns float\\|int\\.$#"
+			count: 1
+			path: app/Http/Operations/PrivateUserFeeOperation.php
+
+		-
+			message: "#^Parameter \\#2 \\$timestamp of function date expects int\\|null, int\\|false given\\.$#"
+			count: 1
+			path: app/Http/Operations/PrivateUserFeeOperation.php
+
+		-
+			message: "#^Parameter \\#5 \\$commissionFee of method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:insertCalculationFee\\(\\) expects string, float\\|int given\\.$#"
+			count: 1
+			path: app/Http/Operations/PrivateUserFeeOperation.php
+
+		-
+			message: "#^Binary operation \"\\*\" between string and \\(float\\|int\\) results in an error\\.$#"
+			count: 1
+			path: app/Http/Services/CurrencyConverterService.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Services\\\\CurrencyConverterService\\:\\:findDecimalPlaces\\(\\) should return string but returns int\\.$#"
+			count: 1
+			path: app/Http/Services/CurrencyConverterService.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Services\\\\CurrencyConverterService\\:\\:roundAmount\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Http/Services/CurrencyConverterService.php
+
+		-
+			message: "#^Parameter \\#2 \\$exponent of function pow expects float\\|int, string given\\.$#"
+			count: 1
+			path: app/Http/Services/CurrencyConverterService.php
+
+		-
+			message: "#^Access to property \\$id on an unknown class App\\\\Models\\\\User\\.$#"
+			count: 1
+			path: app/Providers/RouteServiceProvider.php

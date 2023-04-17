@@ -32,21 +32,22 @@ class FeeCalculate extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             $filePath = $this->option('path') ?? $this->askFilePath();
             
             $this->fileValidation($filePath);
+            $fees = $this->calculationService->feeCalculate($filePath);
 
-            $this->info($this->calculationService->feeCalculate($filePath));
+            $this->info(implode("\n", $fees));
         } catch (\Throwable $th) {
             $this->error($th->getMessage());
-            return;
+            exit();
         }
     }
 
-    public function askFilePath()
+    public function askFilePath(): string
     {
         $filePath = $this->ask('Input the CSV file path with transactions to parse');
         if(empty($filePath)){
@@ -57,10 +58,10 @@ class FeeCalculate extends Command
     }
 
     /**
-     * @param string $filePath
+     * @param string | null $filePath
      * @return void
      */
-    public function fileValidation(string $filePath): void
+    public function fileValidation(?string $filePath): void
     {
         if(!file_exists($filePath)){
             $this->error("File not found: ". $filePath);

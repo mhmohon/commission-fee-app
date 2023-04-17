@@ -8,32 +8,44 @@ use Illuminate\Support\Facades\Cache;
 
 class PrivateUserFeeOperation implements UserFeeCalculation
 {
-    public function calculateFeeByUser($date, $userId, $userType, $operationType, $amount, $currency)
+    public function calculateFeeByUser(string $date, string $userId, string $userType, string $operationType, string $amount, string $currency): string
     {
-        $exchangeRate = new ExchangeRateService();
-        $amount = $exchangeRate->convertToBaseCurrencyAmount($currency, $amount);
+        $amount = app(ExchangeRateService::class)->convertToBaseCurrencyAmount($currency, $amount);
         $fees = Cache::get('fees') ?? [];
         // Calculate the commission fee
-        $withdrawals = array_filter($fees, function($fee) use($userId, $date) {
-            return $fee['userId'] == $userId && $fee['date'] >= date('Y-m-d', strtotime($date.' -1 week')) && $fee['date'] <= $date;
-        });
-        $total_withdrawal_amount = array_sum(array_column($withdrawals, 'amount'));
-        $remaining_free_amount = max(0, 1000 - $total_withdrawal_amount);
-        $commissionFee = max(0, (($amount - $remaining_free_amount) * 0.3) / 100);
+        $totalWithdrawAmount = $this->getTotalWithdrawalAmount($userId, $date, $fees);
+        $remainingFreeAmount = max(0, 1000 - $totalWithdrawAmount);
 
-        $this->insertCalculationFee($date, $userId, $operationType, $amount, $commissionFee);
+        $commissionFee = $this->calculateCommissionFeeAmount($amount, $remainingFreeAmount);
+
+        $this->insertCalculationFee($date, $userId, $operationType, $amount, $commissionFee, $fees);
         return $commissionFee;
     }
 
-    public function insertCalculationFee($date, $userId, $operationType, $amount, $commissionFee)
+    private function getTotalWithdrawalAmount(int $userId, string $date, array $fees): float
     {
-        $feeData[] = [
+        $withdrawals = array_filter($fees, function ($fee) use ($userId, $date) {
+            return $fee['userId'] == $userId && $fee['date'] >= date('Y-m-d', strtotime($date.' -1 week')) && $fee['date'] <= $date;
+        });
+
+        return array_sum(array_column($withdrawals, 'amount'));
+    }
+
+    private function calculateCommissionFeeAmount(float $amount, float $remainingFreeAmount): float
+    {
+        $commissionFee = max(0, (($amount - $remainingFreeAmount) * 0.3) / 100);
+        return $commissionFee;
+    }
+
+    private function insertCalculationFee(string $date, string $userId, string $operationType, string $amount, string $commissionFee, array $fees): void
+    {
+        $fees[] = [
             'date' => $date,
             'userId' => $userId,
             'operation_type' => $operationType,
             'amount' => $amount,
             'fee_amount' => $commissionFee
         ];
-        Cache::put('fees', $feeData);
+        Cache::put('fees', $fees);
     }
 }
