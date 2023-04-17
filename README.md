@@ -99,7 +99,7 @@ I have used factory layer pattern to enhance code flexibility, maintainability, 
 ## Usage
 You can run **Unit** test by using this command
 
-		php artisan app:fee-calculate --path=input.csv
+	php artisan app:fee-calculate --path=input.csv
 	
 **Result**
 
@@ -107,7 +107,7 @@ You can run **Unit** test by using this command
 
 Or
 
-        php artisan app:fee-calculate
+    php artisan app:fee-calculate
 	
 **Result**
 
@@ -115,7 +115,7 @@ Or
 
 You can run **Unit** test by using this command
 
-		./vendor/bin/phpunit
+	./vendor/bin/phpunit
 	
 **Result**
 
@@ -123,7 +123,7 @@ You can run **Unit** test by using this command
 
 You can run **PHPStan** test by using this command
 
-		./vendor/bin/phpstan analyse
+	./vendor/bin/phpstan analyse
 	
 **Result**
 
