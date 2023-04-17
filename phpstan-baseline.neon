@@ -46,12 +46,17 @@ parameters:
 			path: app/Http/Operations/DepositFeeOperation.php
 
 		-
-			message: "#^Binary operation \"\\-\" between string and float\\|int\\<0, max\\> results in an error\\.$#"
+			message: "#^Method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:calculateFeeByUser\\(\\) should return string but returns float\\.$#"
 			count: 1
 			path: app/Http/Operations/PrivateUserFeeOperation.php
 
 		-
-			message: "#^Method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:calculateFeeByUser\\(\\) should return string but returns float\\|int\\.$#"
+			message: "#^Parameter \\#1 \\$amount of method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:calculateCommissionFeeAmount\\(\\) expects float, string given\\.$#"
+			count: 1
+			path: app/Http/Operations/PrivateUserFeeOperation.php
+
+		-
+			message: "#^Parameter \\#1 \\$userId of method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:getTotalWithdrawalAmount\\(\\) expects int, string given\\.$#"
 			count: 1
 			path: app/Http/Operations/PrivateUserFeeOperation.php
 
@@ -61,7 +66,7 @@ parameters:
 			path: app/Http/Operations/PrivateUserFeeOperation.php
 
 		-
-			message: "#^Parameter \\#5 \\$commissionFee of method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:insertCalculationFee\\(\\) expects string, float\\|int given\\.$#"
+			message: "#^Parameter \\#5 \\$commissionFee of method App\\\\Http\\\\Operations\\\\PrivateUserFeeOperation\\:\\:insertCalculationFee\\(\\) expects string, float given\\.$#"
 			count: 1
 			path: app/Http/Operations/PrivateUserFeeOperation.php
 

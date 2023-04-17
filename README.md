@@ -89,20 +89,29 @@ Please check the official laravel installation guide for server requirements bef
 <!-- Architecture and Design Pattern -->
 ## Architecture and Design Pattern
 #### Service Layer Pattern
-I have chosen to use the Service Layer design patterns in my implementation of this application also used the **service interface** layer so that the code will be more abstract and increased testability, which make the application more modular, maintainable, and scalable.
+Implemented Service Layer design pattern with a service interface layer to increase testability, abstraction, and modularity, resulting in a more maintainable and scalable application.
 
 #### Factory Layer Pattern
-I have chosen to use the Service Layer design patterns in my implementation of this application also used the **service interface** layer so that the code will be more abstract and increased testability, which make the application more modular, maintainable, and scalable.
-
-#### Other Libraries
+I have used factory layer pattern to enhance code flexibility, maintainability, and configurability. This approach allows for creating objects through an interface, providing improved abstraction, decoupling, and customization options without modifying the underlying code.
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-### Few Screenshots
-##### Call the command with file path
-[![run-command](https://i.postimg.cc/PqXH3QxG/login.png)](https://postimg.cc/870xsWMw)
+You can run **Unit** test by using this command
 
+		php artisan app:fee-calculate --path=input.csv
+	
+**Result**
+
+![run-command][run-command]
+
+Or
+
+        php artisan app:fee-calculate
+	
+**Result**
+
+![run-command-2][run-command-2]
 
 You can run **Unit** test by using this command
 
@@ -110,7 +119,7 @@ You can run **Unit** test by using this command
 	
 **Result**
 
-![pestImage][pestImage]
+![phpunit][phpunit]
 
 You can run **PHPStan** test by using this command
 
@@ -119,6 +128,7 @@ You can run **PHPStan** test by using this command
 **Result**
 
 ![phpstan][phpstan]
+
 
 
 
@@ -144,5 +154,7 @@ Project Link: [https://github.com/mhmohon/commission-fee-app](https://github.com
 [Bootstrap-url]: https://getbootstrap.com
 [tailwindcss.com]: https://img.shields.io/badge/tailwindcss-0769AD?style=for-the-badge&logo=tailwindcss&logoColor=white
 [tailwindcss-url]: https://tailwindcss.com 
-[run-command]: https://i.ibb.co/qFGKF8m/Screenshot-2023-04-16-at-7-40-09-PM.png
-[phpstan]: https://i.ibb.co/z2d65HY/phpstan.png
+[run-command]: https://i.ibb.co/gtnV28N/Screenshot-2023-04-17-at-7-47-44-PM.png
+[run-command-2]: https://i.ibb.co/BLSF3VN/Screenshot-2023-04-17-at-7-48-22-PM.png
+[phpunit]: https://i.ibb.co/86RHM3Q/Screenshot-2023-04-17-at-7-46-34-PM.png
+[phpstan]: https://i.ibb.co/RYcd4zm/Screenshot-2023-04-17-at-8-02-20-PM.png
